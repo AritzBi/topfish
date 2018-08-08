@@ -57,6 +57,9 @@ filenames = [x[0] for x in files]
 texts = [x[1] for x in files]
 
 wrong_lang = False
+#longformat
+#Indicates that the supplied text files are in the long format, each text file is one training instance 
+#(default = False -- short text format, each line of each file is one training instance
 if args.longformat:
 	languages = [x.split("\t", 1)[0].strip().lower() for x in texts]	
 	labels = [x.split("\t", 2)[1].strip().lower() for x in texts]
@@ -80,6 +83,7 @@ else:
 		labels.extend(labs)
 		rtxts = [x.split("\t", 2)[2] for x in texts[i].split("\n") if len(x.split("\t")) >= 3]
 		raw_texts.extend(rtxts)
+	print(raw_texts[:5])
 
 if wrong_lang:
 	exit(code = 2)
